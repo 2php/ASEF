@@ -41,7 +41,7 @@ int main( int argc, char** argv )
 		return -1;
 
 	struct sigaction act;
-	act.sa_handler = termination_handler; 
+	act.sa_handler = termination_handler;
 	sigemptyset(&act.sa_mask);
 	act.sa_flags = 0;
 	sigaction(SIGINT, &act, NULL);
@@ -65,8 +65,14 @@ int main( int argc, char** argv )
 	gray_img = cvCreateImage( frame_size, IPL_DEPTH_8U, 1);
 
 	cvNamedWindow(window_title, 0);
-	while (1){
-		printf("\r"); fflush(stdout); 
+	while (1) {
+		char key = cvWaitKey(10);
+
+		if (key == 27) {
+			break;
+		}
+
+		printf("\r"); fflush(stdout);
 		printf("FPS: %f  ", calculate_fps());
 
 		frame = cvQueryFrame(capture);
@@ -81,7 +87,7 @@ int main( int argc, char** argv )
 
     // Mirroring results. assuming you're using a frontal facing camera
 		cvFlip(color_img, color_img, 1);
-		cvShowImage( window_title, color_img);
-	} 
+		cvShowImage(window_title, color_img);
+	}
 	return 0;
 }
