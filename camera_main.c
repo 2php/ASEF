@@ -66,7 +66,7 @@ int main( int argc, char** argv )
 
 	cvNamedWindow(window_title, 0);
 	while (1) {
-		char key = cvWaitKey(10);
+		char key = cvWaitKey(1);
 
 		if (key == 27) {
 			break;
