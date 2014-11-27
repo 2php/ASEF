@@ -56,7 +56,6 @@ cvDFT(asef->rfilter, asef->rfilter_dft, CV_DXT_FORWARD, 0);
 cvGetSubRect(asef->lcorr, asef->lroi, asef->lrect);
 cvGetSubRect(asef->rcorr, asef->rroi, asef->rrect);
 
-
 for (int i = 0; i<256; i++){
 	cvmSet(asef->lut, i, 0, 1.0 + i);
 }
@@ -133,7 +132,7 @@ int load_asef_filters(const char* file_name, int *p_n_rows, int *p_n_cols,
 
 	char buf[LINE_BUF_SIZE];
 
-	FILE *fp = fopen(file_name, "r");
+	FILE *fp = fopen(file_name, "rb");
 
 	if (!fp){
 		return -1;
